@@ -1,0 +1,40 @@
+name: testShareExtension # 工程名
+options: # 项目的一些常规配置
+    bundleIdPrefix: com.brightAI.testShareExtension # 假定 BundleID: com.abc.project
+#settings:
+#  DEVELOPMENT_TEAM: ASJDAJS  # 需要去 developer.apple.com 后台获取
+# 上面是 PROJECT 文件中的配置
+# 下面是 TARGETS 文件中的配置
+targets:
+    testShareExtension:
+        type: application
+        platform: iOS
+        sources:
+     #Sources
+#      - subModule # 可选，如果项目有其他 module：例如 FileUpload-iOS/FileUpload
+            - path: testShareExtension # 主项目
+#        settings:
+#            INFOPLIST_FILE: testShareExtension/Info.plist
+        
+    shareExtension:
+        type: app-extension
+        platform: iOS
+        sources:
+            - path: shareExtension
+
+    testShareExtensionTests:
+        type: bundle.unit-test
+        platform: iOS
+        sources:
+            - path: testShareExtensionTests
+        dependencies:
+            - target: testShareExtension
+
+    testShareExtensionUITests:
+        type: bundle.ui-testing
+        platform: iOS
+        sources:
+            - path: testShareExtensionUITests
+        dependencies:
+            - target: testShareExtension
+        
